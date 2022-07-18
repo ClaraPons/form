@@ -13,7 +13,9 @@ class App extends React.Component {
       rememberMe: false,
       emailIsValid: false,
       passwordIsValid: false,
-      isSubmitted: false
+      isSubmitted: false,
+      firstName: "",
+      lastName: ""
     }
   }
 
@@ -50,18 +52,41 @@ class App extends React.Component {
     )
   }
 
+  handleFirstNameChange = (e) => {
+    this.setState({
+      firstName: e.target.value
+    })
+  }
+  
+  handleLastNameChange = (e) => {
+    this.setState({
+      lastName: e.target.value
+    })
+  }
+
   render (){
     return(
       <div  class="m-5">
       <h1 class="text-center">Login</h1>
-      <form class="was-validated d-flex flex-column align-items-center" onSubmit={this.handleSubmit} >
+      {this.state.isSubmitted ? (
+        <p class="d-flex justify-content-center mt-5 bg-success text-white p-3 m-5">Well done {this.state.firstName} {this.state.lastName} ! You are connected with the Email address : {this.state.email}</p> 
+          ) : (
+            <form class="was-validated d-flex flex-column align-items-center" onSubmit={this.handleSubmit} >
             <div class="col-md-4 mb-3">
-              <label for="validationServer01" class="form-label">Email address</label>
-              <input type="email" class="form-control is-valid" id="validationServer01" onChange={this.handleEmailChange} required/>
+              <label for="validationServer01" class="form-label">First Name</label>
+              <input type="text" class="form-control is-valid" id="validationServer01" onChange={this.handleFirstNameChange} required/>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationServer02" class="form-label">Last Name</label>
+              <input type="text" class="form-control is-valid" id="validationServer02" onChange={this.handleLastNameChange} required/>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="validationServer03" class="form-label">Email address</label>
+              <input type="email" class="form-control is-valid" id="validationServer03" onChange={this.handleEmailChange} required/>
             </div>
             <div class="col-md-4 mb-4">
-              <label for="validationServer01" class="form-label">Password</label>
-              <input type="password" class="form-control is-valid" id="validationServer01" onChange={this.handlePasswordChange} required/>
+              <label for="validationServer04" class="form-label">Password</label>
+              <input type="password" class="form-control is-valid" id="validationServer04" onChange={this.handlePasswordChange} required/>
             </div>
             <div class="form-check mb-3">
               <input type="checkbox" class="form-check-input" id="validationFormCheck1" />
@@ -71,6 +96,7 @@ class App extends React.Component {
               <button class="btn btn-primary" type="submit" >Submit</button>
             </div>
       </form>
+            )}
       </div>
     )
 
