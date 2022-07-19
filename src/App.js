@@ -38,7 +38,8 @@ class App extends React.Component {
   
   handleRememberMeChange = (e) => {
     this.setState({
-      rememberMe: !this.state.rememberMe
+     // rememberMe: !this.state.rememberMe
+      rememberMe: e.target.checked
     }, () => {
       console.log(this.state.rememberMe)
     })
@@ -66,34 +67,34 @@ class App extends React.Component {
 
   render (){
     return(
-      <div  class="m-5">
-      <h1 class="text-center">Login</h1>
+      <div  className="m-5">
+      <h1 className="text-center">Login</h1>
       {this.state.isSubmitted ? (
-        <p class="d-flex justify-content-center mt-5 bg-success text-white p-3 m-5">Well done {this.state.firstName} {this.state.lastName} ! You are connected with the Email address : {this.state.email}</p> 
+        <p className="d-flex justify-content-center mt-5 bg-success text-white p-3 m-5">Well done {this.state.firstName} {this.state.lastName} ! You are connected with the Email address : {this.state.email}</p> 
           ) : (
-            <form class="was-validated d-flex flex-column align-items-center" onSubmit={this.handleSubmit} >
-            <div class="col-md-4 mb-3">
-              <label for="validationServer01" class="form-label">First Name</label>
-              <input type="text" class="form-control is-valid" id="validationServer01" onChange={this.handleFirstNameChange} required/>
+          <form className="d-flex flex-column align-items-center" onSubmit={this.handleSubmit} >
+            <div className="col-md-4 mb-3">
+              <label htmlFor="firstName" className="form-label">First Name</label>
+              <input type="text" className={`form-control ${this.state.firstName ? 'is-valid' : 'is-invalid'}`} id="firstName" onChange={this.handleFirstNameChange} />
             </div>
-            <div class="col-md-4 mb-3">
-              <label for="validationServer02" class="form-label">Last Name</label>
-              <input type="text" class="form-control is-valid" id="validationServer02" onChange={this.handleLastNameChange} required/>
+            <div className="col-md-4 mb-3">
+              <label htmlFor="lastName" className="form-label">Last Name</label>
+              <input type="text" className={`form-control ${this.state.lastName ? 'is-valid' : 'is-invalid'}`} id="lastName" onChange={this.handleLastNameChange} />
             </div>
-            <div class="col-md-4 mb-3">
-              <label for="validationServer03" class="form-label">Email address</label>
-              <input type="email" class="form-control is-valid" id="validationServer03" onChange={this.handleEmailChange} required/>
+            <div className="col-md-4 mb-3">
+              <label htmlFor="email" className="form-label">Email address</label>
+              <input type="email" className={`form-control ${this.state.emailIsValid ? 'is-valid' : 'is-invalid'}`} id="email" onChange={this.handleEmailChange} />
             </div>
-            <div class="col-md-4 mb-4">
-              <label for="validationServer04" class="form-label">Password</label>
-              <input type="password" class="form-control is-valid" id="validationServer04" onChange={this.handlePasswordChange} required/>
+            <div className="col-md-4 mb-4">
+              <label htmlFor="password" className="form-label">Password</label>
+              <input type="password" className={`form-control ${this.state.passwordIsValid ? 'is-valid' : 'is-invalid'}`} id="password" onChange={this.handlePasswordChange} />
             </div>
-            <div class="form-check mb-3">
-              <input type="checkbox" class="form-check-input" id="validationFormCheck1" />
-              <label class="form-check-label" for="validationFormCheck1">Remember me</label>
+            <div className="form-check mb-3">
+              <input type="checkbox" className="form-check-input" id="validationFormCheck1" onChange={this.handleRememberMeChange} />
+              <label className="form-check-label" htmlFor="validationFormCheck1">Remember me</label>
             </div>
-            <div class="mb-3">
-              <button class="btn btn-primary" type="submit" >Submit</button>
+            <div className="mb-3">
+              <button className="btn btn-primary" type="submit" >Submit</button>
             </div>
       </form>
             )}
